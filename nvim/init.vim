@@ -73,7 +73,7 @@ endif
 
 call plug#begin( stdpath('data') . '/plugged' )
 Plug 'ayu-theme/ayu-vim'
-Plug 'lambdalisue/gina.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': { -> coc#util#install() } }
 Plug 'metakirby5/codi.vim'
