@@ -1,0 +1,7 @@
+session_name: tool-api
+start_directory: ~/Source/authoring-tool-backend
+windows:
+  - name:
+    panes:
+      - cd server/; env JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_261.jdk/Contents/Home mvn tomcat7:run; cd ..
+

@@ -1,0 +1,11 @@
+session_name: models
+start_directory: ~/Source/common-models
+windows:
+  - main:
+    layout: main-vertical
+    panes:
+      - null
+      - nvim
+
+
+

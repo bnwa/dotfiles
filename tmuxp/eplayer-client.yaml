@@ -1,0 +1,9 @@
+session_name: client
+start_directory: ~/Source/eplayer-client
+windows:
+  - main:
+    layout: main-vertical
+    panes:
+      - null 
+      - nvim
+

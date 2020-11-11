@@ -1,0 +1,12 @@
+session_name: composer-client
+start_directory: ~/Source/composer-client
+windows:
+  - name:
+    layout: main-vertical
+    panes:
+      - ./node_modules/.bin/gulp
+      - shell_command:
+        - nvim
+        focus: true
+
+

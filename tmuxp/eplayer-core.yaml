@@ -1,0 +1,10 @@
+session_name: core
+start_directory: ~/Source/eplayer-core
+windows:
+  - main:
+    layout: main-vertical
+    panes:
+      - null
+      - nvim
+
+

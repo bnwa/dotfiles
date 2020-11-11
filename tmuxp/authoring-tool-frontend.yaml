@@ -1,0 +1,8 @@
+session_name: tool
+start_directory: ~/Source/authoring-tool-frontend
+windows:
+  - main:
+    layout: main-vertical
+    panes:
+      - yarn start
+      - nvim
