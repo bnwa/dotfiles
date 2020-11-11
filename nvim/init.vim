@@ -75,9 +75,9 @@ call plug#begin( stdpath('data') . '/plugged' )
 Plug 'ayu-theme/ayu-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': { -> coc#util#install() } }
 Plug 'metakirby5/codi.vim'
 Plug 'wellle/context.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'markonm/traces.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/yajs.vim'
