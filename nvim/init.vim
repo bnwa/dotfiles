@@ -76,7 +76,6 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'metakirby5/codi.vim'
-Plug 'wellle/context.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'markonm/traces.vim'
 Plug 'hail2u/vim-css3-syntax'
@@ -89,7 +88,7 @@ call plug#end()
 let mapleader=","
 
 " Ayu color scheme opt
-let ayucolor="dark"
+"let ayucolor="mirage"
 
 " CtrlP
 let g:ctrlp_cmd = 'CtrlP'
@@ -155,4 +154,4 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " Set color scheme
-colorscheme ayu
+"colorscheme ayu
