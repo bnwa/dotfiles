@@ -13,6 +13,7 @@ l () { command ls -GLA $1; }
 ll    () { command ls -Gla $1; }
 del  () { command mv "$@" ~/.Trash; }
 mkdir () { command mkdir -p $1; }
+headcommit () { if [ -d ./.git ]; then git l -1 | cut -c 1-7 | pbcopy; fi; }
 
 if [ -r "/usr/local/etc/profile.d/bash_completion.sh" ]; then
 
