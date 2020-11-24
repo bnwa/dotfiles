@@ -2,12 +2,14 @@
 	editor = nvim
 	autocrlf = input
 	safecrlf = true
+[pull]
+  rebase = false
 [push]
 	default = simple
 [user]
 	name = Benoît Barberousse
 [stash]
-        showPatch = true
+  showPatch = true
 [filter "lfs"]
 	smudge = git-lfs smudge %f
 	required = true
