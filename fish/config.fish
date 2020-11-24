@@ -1,13 +1,16 @@
-set -l hasJava (ls /Library/Java/JavaVirtualMachines 2> /dev/null)
-set -l hasPython (ls ~/Library/Python 2> /dev/null)
+set -l SYS_JAVA /Library/Java/JavaVirtualMachines
+set -l USER_PYTHON ~/Library/Python
 
-if [ $hasJava ]
-  set -g JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_261.jdk/Contents/Home
-  set -g PATH $JAVA_HOME/bin $PATH
+set -l hasJava (ls $SYS_JAVA 2> /dev/null)
+set -l hasPython (ls USER_PYTHON 2> /dev/null)
+
+if [ "$hasJava" ]
+  set -gx JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_261.jdk/Contents/Home
+  set -gx PATH $JAVA_HOME/bin $PATH
 end
 
-if [ $hasPython ] && test -d /Library/Python/"$hasPython[1]"/bin
-  set -g PATH ~/Library/Python/3.8/bin $PATH
+if [ "$hasPython" ]
+  set -gx PATH ~/Library/Python/3.8/bin $PATH
 end
 
 fish_vi_key_bindings
