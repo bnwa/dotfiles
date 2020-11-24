@@ -64,6 +64,11 @@ autocmd BufRead,BufWrite,BufNewFile markdown setlocal textwidth=80
 " NPM
 autocmd FileType *.js,*.ts,*.jsx,*.tsx,package.json nnoremap <leader>y :!yarn install<CR>
 
+" Fish shell
+autocmd FileType *.fish setlocal tabstop=4
+autocmd FileType *.fish setlocal softtabstop=4
+autocmd FileType *.fish setlocal shiftwidth=4
+
 " vim-plug -- auto install if missing and load plugins
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
