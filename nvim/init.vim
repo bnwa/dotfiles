@@ -50,13 +50,14 @@ set updatetime=100
 set novisualbell
 
 " JSON(c)
-autocmd FileType json syntax match Comment +\/\/.\+$+
+"autocmd FileType json syntax match Comment +\/\/.\+$+
 
+autocmd FileType tsconfig.json setlocal syntax=jsonc
 "Terminal
 autocmd TermOpen * setlocal nonumber norelativenumber
 
 "CSS
-autocmd Filetype css setlocal iskeyword+=-
+autocmd FileType css setlocal iskeyword+=-
 
 " Markdown
 autocmd BufRead,BufWrite,BufNewFile markdown setlocal textwidth=80
@@ -87,6 +88,8 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/yajs.vim'
 Plug 'othree/es.next.syntax.vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'neoclide/jsonc.vim'
 call plug#end()
 
 " Set leader prefix
@@ -157,6 +160,9 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 
 " coc.nvim -- Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" coc.nvim -- Show types
+nnoremap <silent> <space>d  :call CocAction("doHover")<CR>
 
 " Set color scheme
 "colorscheme ayu
