@@ -1,8 +1,5 @@
 {
-  "coc.preferences.jumpCommand": "tabe",
   "codeLens.enable": true,
-  "diagnostic.checkCurrentLine": false,
-  "diagnostic.virtualText": true,
   "suggest.enablePreview": true,
   "suggest.numberSelect": true
 }

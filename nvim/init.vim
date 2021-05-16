@@ -49,21 +49,17 @@ set updatetime=100
 " Don't flash screen where there'd be an error bell
 set novisualbell
 
-" JSON(c)
-"autocmd FileType json syntax match Comment +\/\/.\+$+
+" Markdown
+autocmd BufReadPre *.md Goyo
 
+" JSON(c)
 autocmd FileType tsconfig.json setlocal syntax=jsonc
+
 "Terminal
 autocmd TermOpen * setlocal nonumber norelativenumber
 
 "CSS
 autocmd FileType css setlocal iskeyword+=-
-
-" Markdown
-autocmd BufRead,BufWrite,BufNewFile markdown setlocal textwidth=80
-
-" NPM
-autocmd FileType *.js,*.ts,*.jsx,*.tsx,package.json nnoremap <leader>y :!yarn install<CR>
 
 " Fish shell
 autocmd FileType *.fish setlocal tabstop=4
@@ -80,30 +76,38 @@ endif
 call plug#begin( stdpath('data') . '/plugged' )
 Plug 'ayu-theme/ayu-vim'
 Plug 'tpope/vim-fugitive'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'metakirby5/codi.vim'
+Plug 'junegunn/gv.vim'
+Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'markonm/traces.vim'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'othree/yajs.vim'
-Plug 'othree/es.next.syntax.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'yuezk/vim-js'
 Plug 'neoclide/jsonc.vim'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'uiiaoo/java-syntax.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'jsit/toast.vim'
 call plug#end()
 
-" Set leader prefix
-let mapleader=","
+set background=light
+" Set color scheme
+"colorscheme ayu
+"colorscheme dracula
+colorscheme toast
 
 " Ayu color scheme opt
-"let ayucolor="mirage"
+let ayucolor="light"
+
 
 " CtrlP
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-" Make pgsql.vim handle all SQL files
-let g:sql_type_default='pgsql'
+" Set leader prefix
+let mapleader=","
 
 " Mappings
 nnoremap j gj
@@ -163,6 +167,26 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " coc.nvim -- Show types
 nnoremap <silent> <space>d  :call CocAction("doHover")<CR>
+nnoremap <silent> <leader>~ :call ToggleDynamicTheme()<CR>
 
-" Set color scheme
-"colorscheme ayu
+function ToggleDynamicTheme()
+    let l:current = g:colors_name
+
+    if l:current == "ayu"
+      if g:ayucolor == "light"
+        let g:ayucolor = "dark"
+        set background=dark
+      else
+        let g:ayucolor = "light"
+        set background=light
+      endif
+    elseif l:current == "toast"
+      if &background == "light"
+        set background=dark
+      else
+        set background=light
+      endif
+    else
+      echo "Current theme '" . l:current . "' isn't dynamic"
+    endif
+endfunction
