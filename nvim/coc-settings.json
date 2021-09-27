@@ -1,0 +1,25 @@
+{
+  "codeLens.enable": true,
+  "diagnostic.autoRefresh": true,
+  "diagnostic.checkCurrentLine": false,
+  "diagnostic.enableSign": false,
+  "diagnostic.virtualText": false,
+  "hover.floatConfig": {
+    "border": false,
+    "focusable": false,
+    "shadow": true
+  },
+  "signature.floatConfig": {
+    "border": false,
+    "focusable": false,
+    "shadow": true
+  },
+  "suggest.enablePreview": true,
+  "suggest.detailMaxLength": 100,
+  "suggest.floatEnable": true,
+  "suggest.floatConfig": {
+    "border": true,
+    "focusable": false,
+    "shadow": true
+  }
+}
