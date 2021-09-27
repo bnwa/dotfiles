@@ -1,38 +1,40 @@
 [core]
-    editor = nvim
-    autocrlf = input
-    safecrlf = true
+        editor = nvim
+        autocrlf = input
+        safecrlf = true
 [pull]
-    rebase = false
+        rebase = false
 [push]
-    default = simple
+        default = simple
 [user]
-    name = Benoît Barberousse
-    email = 74591246+bnwa@users.noreply.github.com
+        name = Benoît Barberousse
+        email = 74591246+bnwa@users.noreply.github.com
 [stash]
     showPatch = true
 [filter "lfs"]
-    smudge = git-lfs smudge -- %f
-    required = true
-    clean = git-lfs clean -- %f
-    process = git-lfs filter-process
+        smudge = git-lfs smudge -- %f
+        required = true
+        clean = git-lfs clean -- %f
+        process = git-lfs filter-process
 [status]
-    showUntrackedFiles = all
+        showUntrackedFiles = all
 [stash]
-    showPatch = true
+        showPatch = true
 [alias]
-    a   = add --patch
-    b   = branch
-    c   = commit
-    ch  = checkout
-    d   = diff
-    fnd = grep --line-number --break --heading
-    l   = log --oneline --decorate
-    la  = log --oneline --decorate --all
-    m   = merge
-    p   = push
-    r   = remote -v
-    st  = status --branch --short
-    sv  = stash save -u
-    svs = stash list
-    opn = stash apply
+        a   = add --patch
+        b   = branch
+        c   = commit
+        ch  = checkout
+        d   = diff
+        fnd = grep --line-number --break --heading
+        l   = log --oneline --decorate
+        la  = log --oneline --decorate --all
+        m   = merge
+        p   = push
+        r   = remote -v
+        st  = status --branch --short
+        sv  = stash save -u
+        svs = stash list
+        opn = stash apply
+[init]
+	defaultBranch = master
