@@ -2,11 +2,12 @@ local fn = vim.fn
 local g = vim.g
 local map = vim.api.nvim_set_keymap
 local opt = vim.opt
+local cmd = vim.cmd
 
-local install_path = fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', '--depth=1', 'https://github.com/savq/paq-nvim.git', install_path})
+if fn.isdirectory(fn.glob(install_path)) == 0 then
+  fn.system({'git', 'clone', '--depth=1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
 opt.background = "light"
@@ -30,16 +31,16 @@ opt.updatetime = 100
 opt.visualbell = false
 
 g.mapleader = ","
-
-require "paq" {
-  "savq/paq-nvim";
-  "tpope/vim-fugitive";
-  "nvim-lua/plenary.nvim";
-  "nvim-telescope/telescope.nvim";
-  "fannheyward/telescope-coc.nvim";
-  { "neoclide/coc.nvim", branch = "release" };
-  { "nvim-treesitter/nvim-treesitter", branch = "0.5-compat", run = ":TSUpdate" };
-}
+-- Run `PackerSync` after any change
+require('packer').startup(function()
+  use 'wbthomason/packer.nvim'
+  use 'tpope/vim-fugitive'
+  use 'nvim-lua/plenary.nvim'
+  use 'nvim-telescope/telescope.nvim'
+  use { 'neoclide/coc.nvim', branch = 'release', run = 'yarn install --frozen-lockfile' }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use "fannheyward/telescope-coc.nvim"
+end)
 
 require("telescope").load_extension("coc")
 
@@ -63,7 +64,7 @@ require 'nvim-treesitter.configs'.setup {
 }
 
 -- TODO update when autcmd can be handled in Lua
-vim.cmd([[
+cmd([[
   " Markdown
   autocmd BufReadPre *.md Goyo
   
@@ -82,6 +83,11 @@ vim.cmd([[
   autocmd FileType *.fish setlocal shiftwidth=4
 ]])
 
+-- See https://github.com/neoclide/coc.nvim/wiki/F.A.Q#bad-background-highlight-of-floating-window
+cmd([[
+  hi CocFloating guibg=none guifg=none
+]])
+
 -- Treat wrapped lines as single line
 map('n', 'j', 'gj', { noremap = true })
 map('n', 'k', 'gk', { noremap = true })
@@ -95,6 +101,12 @@ map("n", "<leader>r", ":source $MYVIMRC<CR>", { noremap = true })
 -- Cease highlighting search matches
 map("n", "<leader>k", ":nohlsearch<CR>", { noremap = true })
 
+-- Rename symbol
+map("n", "<leader>rn", ":call CocActionAsync('rename')<CR>", { noremap = true })
+
+-- Show symbol type
+map("n", "<space>d", ":call CocAction('doHover')<CR>", { noremap = true })
+
 -- Simplify pane switching
 map("n", "<C-J>", "<C-W><C-J>", { noremap = true })
 map("n", "<C-K>", "<C-W><C-K>", { noremap = true })
@@ -102,7 +114,16 @@ map("n", "<C-L>", "<C-W><C-L>", { noremap = true })
 map("n", "<C-H>", "<C-W><C-H>", { noremap = true })
 
 -- Telescope
-map("n", "<C-F>f", "<cmd>lua require('telescope.builtin').find_files()<CR>", { noremap = true })
-map("n", "<C-F>g", "<cmd>lua require('telescope.builtin').git_files()<CR>", { noremap = true })
-map("n", "<C-F>h", "<cmd>lua require('telescope.builtin').help_tags()<CR>", { noremap = true })
-map("n", "<C-F>d", "<cmd>lua require('telescope').extensions.coc.diagnostics()<CR>", { noremap = true })
+-- map("n", "<Space>a", "<cmd>lua require('telescope.builtin').find_files{}<CR>", { noremap = true })
+map("n", "<C-p>", "<cmd>lua require('telescope.builtin').git_files{}<CR>", { noremap = true })
+map("n", "<Space>h", "<cmd>lua require('telescope.builtin').help_tags{}<CR>", { noremap = true })
+map("n", "<Space>e", "<cmd>lua require('telescope').extensions.coc.diagnostics{}<CR>", { noremap = true })
+map("n", "<Space>o", "<cmd>lua require('telescope').extensions.coc.document_symbols{}<CR>", { noremap = true })
+map("n", "<Space>m", "<cmd>lua require('telescope').extensions.coc.commands{}<CR>", { noremap = true })
+map("n", "<Space>wo", "<cmd>lua require('telescope').extensions.coc.workspace_symbols{}<CR>", { noremap = true })
+map("n", "<Space>a", "<cmd>lua require('telescope').extensions.coc.code_actions{}<CR>", { noremap = true })
+map("n", "<Space>fa", "<cmd>lua require('telescope').extensions.coc.file_code_actions{}<CR>", { noremap = true })
+map("n", "<Space>la", "<cmd>lua require('telescope').extensions.coc.line_code_actions{}<CR>", { noremap = true })
+map("n", "<Space>gr", "<cmd>lua require('telescope').extensions.coc.references{}<CR>", { noremap = true })
+map("n", "<Space>gi", "<cmd>lua require('telescope').extensions.coc.implementations{}<CR>", { noremap = true })
+map("n", "<Space>gd", "<cmd>lua require('telescope').extensions.coc.definitions{}<CR>", { noremap = true })
