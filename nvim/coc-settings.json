@@ -5,12 +5,12 @@
   "diagnostic.enableSign": false,
   "diagnostic.virtualText": false,
   "hover.floatConfig": {
-    "border": false,
+    "border": true,
     "focusable": false,
     "shadow": true
   },
   "signature.floatConfig": {
-    "border": false,
+    "border": true,
     "focusable": false,
     "shadow": true
   },
