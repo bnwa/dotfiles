@@ -34,6 +34,9 @@ opt.updatetime = 100
 opt.visualbell = false
 
 if 0 == fn.has('ttyin') then
+  g.neovide_cursor_animation_length = 0.08
+  g.neovide_refresh_rate = 60
+  g.neovide_remember_window_size = true
   opt.background = "dark"
   opt.termguicolors = true
 end
