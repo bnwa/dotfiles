@@ -9,6 +9,7 @@
     "focusable": false,
     "shadow": true
   },
+  "javascript.referencesCodeLens.enable": false,
   "signature.floatConfig": {
     "border": true,
     "focusable": false,
@@ -21,5 +22,6 @@
     "border": true,
     "focusable": false,
     "shadow": true
-  }
+  },
+  "typescript.referencesCodeLens.enable": false
 }
