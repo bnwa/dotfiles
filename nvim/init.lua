@@ -50,7 +50,21 @@ require('packer').startup(function()
   use 'tpope/vim-fugitive'
   use 'savq/melange'
   use { 'neoclide/coc.nvim', branch = 'release', run = 'yarn install --frozen-lockfile' }
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = function() 
+  use { 'akinsho/toggleterm.nvim', tag = 'v1.*', config = function ()
+    local toggleterm = require 'toggleterm'
+    toggleterm.setup {
+      direction = 'float',
+      open_mapping = [[<C-\>]],
+      size = function (term)
+        if 'horizontal' == term.direction then
+          return 15
+        elseif 'vertical' == term.direction then
+          return vim.o.columns * 0.25
+        end
+      end
+    }
+  end }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = function()
     local config = require 'nvim-treesitter.configs'
     config.setup {
       incremental_selection = {
@@ -73,13 +87,15 @@ require('packer').startup(function()
   end }
   use { 'nvim-telescope/telescope.nvim', config = function()
     local telescope = require 'telescope'
+
     telescope.load_extension "coc"
     telescope.load_extension "file_browser"
-    telescope.load_extension "project"
+    telescope.load_extension "packer"
   end }
   use "fannheyward/telescope-coc.nvim"
   use "nvim-telescope/telescope-file-browser.nvim"
-  use "nvim-telescope/telescope-project.nvim"
+  use "nvim-telescope/telescope-packer.nvim"
+  use "JoseConseco/telescope_sessions_picker.nvim"
 end)
 
 -- TODO update when autcmd can be handled in Lua
