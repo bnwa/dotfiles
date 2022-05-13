@@ -86,16 +86,13 @@ require('packer').startup(function()
     }
   end }
   use { 'nvim-telescope/telescope.nvim', config = function()
-    local telescope = require 'telescope'
-
-    telescope.load_extension "coc"
-    telescope.load_extension "file_browser"
-    telescope.load_extension "packer"
   end }
-  use "fannheyward/telescope-coc.nvim"
-  use "nvim-telescope/telescope-file-browser.nvim"
-  use "nvim-telescope/telescope-packer.nvim"
-  use "JoseConseco/telescope_sessions_picker.nvim"
+  use  { "fannheyward/telescope-coc.nvim", config = function()
+     require 'telescope'.load_extension "coc"
+  end }
+  use { "nvim-telescope/telescope-packer.nvim", config = function()
+     require 'telescope'.load_extension 'packer'
+  end }
 end)
 
 -- TODO update when autcmd can be handled in Lua
