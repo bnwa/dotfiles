@@ -22,7 +22,7 @@ opt.relativenumber = true
 opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.shortmess:append "c"
-opt.splitbelow = true
+opt.splitbelow = false
 opt.splitright = false
 opt.swapfile = false
 opt.termguicolors = false
@@ -149,8 +149,8 @@ map("n", "<C-L>", "<C-W><C-L>", { noremap = true })
 map("n", "<C-H>", "<C-W><C-H>", { noremap = true })
 
 -- Telescope
-map("n", "<C-p>", "<cmd>lua require('telescope.builtin').find_files{}<CR>", { noremap = true })
--- map("n", "<C-p>", "<cmd>lua require('telescope.builtin').git_files{ show_untracked = true }<CR>", { noremap = true })
+-- map("n", "<C-p>", "<cmd>lua require('telescope.builtin').find_files{}<CR>", { noremap = true })
+map("n", "<C-p>", "<cmd>lua require('telescope.builtin').git_files{ show_untracked = true }<CR>", { noremap = true })
 map("n", "<Space>h", "<cmd>lua require('telescope.builtin').help_tags{}<CR>", { noremap = true })
 map("n", "<Space>e", "<cmd>lua require('telescope').extensions.coc.diagnostics{}<CR>", { noremap = true })
 map("n", "<Space>o", "<cmd>lua require('telescope').extensions.coc.document_symbols{}<CR>", { noremap = true })
