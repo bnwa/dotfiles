@@ -5,8 +5,37 @@ local map = api.nvim_set_keymap
 local opt = vim.opt
 local cmd = vim.cmd
 local ex = api.nvim_command
+local def_cmd = api.nvim_create_user_command
 
 local packer_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+local session_path = fn.stdpath('data') .. '/session' 
+
+local function nearestDirName(abs_path) 
+  if "/" == abs_path then return "" end
+  local paths = {}
+  for delimiter, path in abs_path:gmatch "(/)([%w%s]+)" do
+    table.insert(paths, path)
+  end
+  return paths[#paths]
+end
+
+local function persist_session()
+  local cwd = fn.getcwd()
+  local dir = nearestDirName(cwd)
+
+  cmd("mksession " .. session_path .."/" .. dir .. '.vim')
+end
+
+local function restore_session(meta)
+  local args = meta.fargs 
+  local opt = args[1]
+  local hasOpt = opt ~= ""
+  local name = hasOpt and opt or nearestDirName(fn.getcwd())
+  local session = session_path .. "/" .. name .. ".vim"
+  if name == "" then return end
+
+  cmd("source " .. session)
+end
 
 if fn.isdirectory(fn.glob(packer_path)) == 0 then
   fn.system({'git', 'clone', '--depth=1', 'https://github.com/wbthomason/packer.nvim', packer_path})
@@ -87,6 +116,9 @@ require('packer').startup(function()
      require 'telescope'.load_extension 'packer'
   end }
 end)
+
+def_cmd("Save", persist_session, { desc = "Save the current session" })
+def_cmd("Open", restore_session, { desc = "Load a session", nargs = '?' })
 
 -- TODO update when autcmd can be handled in Lua
 cmd([[
