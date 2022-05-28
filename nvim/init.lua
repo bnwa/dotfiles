@@ -1,8 +1,10 @@
-local fn = vim.fn
 local g = vim.g
-local map = vim.api.nvim_set_keymap
+local fn = vim.fn
+local api = vim.api
+local map = api.nvim_set_keymap
 local opt = vim.opt
 local cmd = vim.cmd
+local ex = api.nvim_command
 
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
@@ -39,6 +41,7 @@ if 0 == fn.has('ttyin') then
   g.neovide_remember_window_size = true
   opt.background = "dark"
   opt.termguicolors = true
+  ex ':cd'
 end
 
 g.mapleader = ","
