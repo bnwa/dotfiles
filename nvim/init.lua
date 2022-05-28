@@ -47,9 +47,21 @@ g.mapleader = ","
 require('packer').startup(function()
   use 'wbthomason/packer.nvim'
   use 'nvim-lua/plenary.nvim'
+  use 'rafcamlet/nvim-luapad'
   use 'tpope/vim-fugitive'
   use 'savq/melange'
   use { 'neoclide/coc.nvim', branch = 'release', run = 'yarn install --frozen-lockfile' }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = function()
+    require 'nvim-treesitter.configs'.setup {
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false
+      },
+      incremental_selection = { enable = true },
+      indentation = { enable = true },
+      matchup = { enable = true }
+    }
+  end }
   use { 'akinsho/toggleterm.nvim', tag = 'v1.*', config = function ()
     local toggleterm = require 'toggleterm'
     toggleterm.setup {
@@ -64,33 +76,11 @@ require('packer').startup(function()
       end
     }
   end }
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = function()
-    local config = require 'nvim-treesitter.configs'
-    config.setup {
-      incremental_selection = {
-        enable = true
-      },
-
-      indentation = {
-        enable = true
-      },
-
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false
-      },
-
-      matchup = {
-        enable = true
-      }
-    }
+  use 'nvim-telescope/telescope.nvim'
+  use { 'fannheyward/telescope-coc.nvim', config = function()
+     require 'telescope'.load_extension 'coc'
   end }
-  use { 'nvim-telescope/telescope.nvim', config = function()
-  end }
-  use  { "fannheyward/telescope-coc.nvim", config = function()
-     require 'telescope'.load_extension "coc"
-  end }
-  use { "nvim-telescope/telescope-packer.nvim", config = function()
+  use { 'nvim-telescope/telescope-packer.nvim', config = function()
      require 'telescope'.load_extension 'packer'
   end }
 end)
