@@ -33,7 +33,7 @@ require('packer').startup(function()
           local toggleterm = require 'toggleterm'
           toggleterm.setup {
             direction = 'float',
-            open_mapping = [[<C-\>]]
+            on_open = function(term) vim.cmd 'startinsert!' end
           }
         end
       }
