@@ -7,7 +7,6 @@ local has_gui = require 'lib'.has_gui
 opt.background = 'light'
 opt.expandtab = true
 opt.gdefault = true
-opt.guifont= { 'Liga SFMono Nerd Font', 'SF Mono', 'Menlo' }
 opt.laststatus = 2
 opt.number = true
 opt.listchars.precedes = "«"
@@ -31,6 +30,7 @@ if has_gui() then
   g.neovide_cursor_animation_length = 0.08
   g.neovide_refresh_rate = 60
   g.neovide_remember_window_size = true
+  opt.guifont = { 'Liga SFMono Nerd Font', 'SF Mono', 'Menlo' }
   opt.termguicolors = true
   ex 'colorscheme melange'
   ex 'cd ~/Github'
