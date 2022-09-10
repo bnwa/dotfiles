@@ -7,6 +7,8 @@ local new_cmd = vim.api.nvim_create_user_command
 local nearest_path_name = lib.nearest_path_name
 local file_readable = lib.file_readable
 
+local session_path = fn.stdpath('data') .. '/session'
+
 local function persist_session()
   local cwd = fn.getcwd()
   local dir = nearest_path_name(cwd)

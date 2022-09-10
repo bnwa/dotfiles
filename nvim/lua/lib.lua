@@ -1,8 +1,12 @@
 local fn = vim.fn
 local M = {}
 
+function split(str, delimiter)
+  return str:gmatch(delimiter .. '([%w%s]+)')
+end
+
 function M.file_readable(path)
-  return 1 == fn.filereadable(session) and true or false
+  return 1 == fn.filereadable(path)
 end
 
 function M.has_gui()
@@ -21,4 +25,3 @@ function M.nearest_path_name(abs_path)
 end
 
 return M
-
