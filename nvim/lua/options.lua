@@ -18,6 +18,7 @@ opt.shortmess:append "c"
 opt.splitbelow = true
 opt.splitright = false
 opt.swapfile = false
+opt.tabstop = 2
 opt.termguicolors = false
 opt.wildignore:append '*/node_modules/*'
 opt.wildignore:append '/.git'
