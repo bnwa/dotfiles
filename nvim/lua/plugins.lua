@@ -42,6 +42,5 @@ require('packer').startup(function()
       }
   use { 'fannheyward/telescope-coc.nvim', config = function() require 'telescope'.load_extension 'coc' end }
   use { 'nvim-telescope/telescope-packer.nvim', config = function() require 'telescope'.load_extension 'packer' end }
-  use { 'nvim-telescope/telescope-project.nvim', config = function() require 'telescope'.load_extension 'project' end }
   if packer_instance then require('packer').sync() end
 end)
