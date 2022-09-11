@@ -18,7 +18,7 @@ function M.is_neovide()
 end
 
 function M.is_directory(path)
-  return 1 == fn.isdirectory(path) and true or false
+  return 1 == fn.isdirectory(path)
 end
 
 function M.nearest_path_name(abs_path) 
