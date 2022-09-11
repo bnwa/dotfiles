@@ -12,7 +12,7 @@ local session_path = fn.stdpath('data') .. '/session'
 local function persist_session()
   local cwd = fn.getcwd()
   local dir = nearest_path_name(cwd)
-  cmd('mksession ' .. session_path ..'/' .. dir .. '.vim')
+  cmd('mksession! ' .. session_path ..'/' .. dir .. '.vim')
   notify('Session saved for current directory')
 end
 
