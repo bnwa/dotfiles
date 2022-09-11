@@ -10,7 +10,11 @@ function M.file_readable(path)
 end
 
 function M.has_gui()
-  return 0 == fn.has('ttyin') and true or false
+  return 0 == fn.has('ttyin')
+end
+
+function M.is_neovide()
+  return 1 == fn.exists('g:neovide')
 end
 
 function M.is_directory(path)
