@@ -2,7 +2,7 @@ local fn = vim.fn
 local M = {}
 
 function split(str, delimiter)
-  return str:gmatch(delimiter .. '([%w%s]+)')
+  return str:gmatch(delimiter .. '([%w%s%-]+)')
 end
 
 function M.file_readable(path)
