@@ -34,5 +34,4 @@ if has_gui() and is_neovide() then
   g.neovide_remember_window_size = true
   opt.termguicolors = true
   ex 'colorscheme melange'
-  ex 'cd ~/Github'
 end
