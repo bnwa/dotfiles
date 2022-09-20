@@ -1,27 +1,15 @@
 {
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "coc.preferences.jumpCommand": "split",
   "codeLens.enable": true,
-  "diagnostic.autoRefresh": true,
-  "diagnostic.checkCurrentLine": false,
   "diagnostic.enableSign": false,
-  "diagnostic.virtualText": false,
-  "hover.floatConfig": {
-    "border": true,
+  "diagnostic.virtualText": true,
+  "floatFactory.floatConfig": {
+    "border": false,
+    "rounded": false,
     "focusable": false,
-    "shadow": true
+    "shadow": false
   },
-  "javascript.referencesCodeLens.enable": false,
-  "signature.floatConfig": {
-    "border": true,
-    "focusable": false,
-    "shadow": true
-  },
-  "suggest.enablePreview": true,
-  "suggest.detailMaxLength": 100,
-  "suggest.floatEnable": true,
-  "suggest.floatConfig": {
-    "border": true,
-    "focusable": false,
-    "shadow": true
-  },
-  "typescript.referencesCodeLens.enable": false
+  "list.alignColumns": true,
+  "suggest.defaultSortMethod": "alphabetical"
 }
