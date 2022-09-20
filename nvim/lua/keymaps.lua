@@ -54,6 +54,10 @@ local function pick_files()
   end
 end
 
+local function pick_register()
+  require('telescope.builtin').registers {}
+end
+
 g.mapleader = ','
 
 -- Treat wrapped lines as single line
@@ -102,4 +106,4 @@ set("n", [[<Space>la]], get_lsp_picker('line_code_actions'))
 set("n", [[<Space>gr]], get_lsp_picker('references'))
 set("n", [[<Space>gi]], get_lsp_picker('implementations'))
 set("n", [[<Space>gd]], get_lsp_picker('definitions'))
-
+set("n", [[<Space>']],  pick_register)
