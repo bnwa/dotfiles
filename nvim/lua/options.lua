@@ -33,5 +33,5 @@ if has_gui() and is_neovide() then
   g.neovide_refresh_rate = 60
   g.neovide_remember_window_size = true
   opt.termguicolors = true
-  ex 'colorscheme melange'
+  ex 'colorscheme gruvbox'
 end
