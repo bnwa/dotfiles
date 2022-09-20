@@ -32,7 +32,6 @@ if has_gui() and is_neovide() then
   g.neovide_cursor_animation_length = 0.08
   g.neovide_refresh_rate = 60
   g.neovide_remember_window_size = true
-  opt.guifont = { 'Liga SFMono Nerd Font', 'SF Mono', 'Menlo' }
   opt.termguicolors = true
   ex 'colorscheme gruvbox'
 end
