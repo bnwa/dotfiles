@@ -12,6 +12,7 @@ require('packer').startup(function()
   use { 'rafcamlet/nvim-luapad' }
   use { 'tpope/vim-fugitive' }
   use { 'savq/melange' }
+  use { "ellisonleao/gruvbox.nvim" }
   use { 'neoclide/coc.nvim', branch = 'release', run = 'yarn install --frozen-lockfile' }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',
         config = function()
@@ -43,7 +44,12 @@ require('packer').startup(function()
       }
   use { 'fannheyward/telescope-coc.nvim', config = function() require 'telescope'.load_extension 'coc' end }
   use { 'nvim-telescope/telescope-packer.nvim', config = function() require 'telescope'.load_extension 'packer' end }
-  use { "ellisonleao/gruvbox.nvim" }
+  use { "olimorris/persisted.nvim", config = function ()
+          require('persisted').setup {
+            use_git_branch = true
+          }
+          require('telescope').load_extension 'persisted'
+  end}
 
   if packer_instance then require('packer').sync() end
 end)
