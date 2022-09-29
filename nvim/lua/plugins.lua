@@ -29,7 +29,11 @@ require('packer').startup(function()
           local toggleterm = require 'toggleterm'
           toggleterm.setup {
             direction = 'float',
-            on_open = function(term) vim.cmd 'startinsert!' end
+            float_opts = {
+              border = 'shadow'
+            },
+            on_open = function(term) vim.cmd 'startinsert!' end,
+            open_mapping = '<C-Space>'
           }
         end
       }
