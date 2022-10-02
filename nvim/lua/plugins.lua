@@ -49,12 +49,6 @@ require('packer').startup(function()
       }
   use { 'fannheyward/telescope-coc.nvim', config = function() require 'telescope'.load_extension 'coc' end }
   use { 'nvim-telescope/telescope-packer.nvim', config = function() require 'telescope'.load_extension 'packer' end }
-  use { "olimorris/persisted.nvim", config = function ()
-          require('persisted').setup {
-            use_git_branch = true
-          }
-          require('telescope').load_extension 'persisted'
-  end}
 
   if packer_instance then require('packer').sync() end
 end)
