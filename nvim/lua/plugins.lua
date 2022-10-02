@@ -1,6 +1,7 @@
 local fn = vim.fn
 local is_directory = require('lib').is_directory
 local packer_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+local packer_instance = nil
 
 if not is_directory(packer_path) then
   packer_instance = fn.system({'git', 'clone', '--depth=1', 'https://github.com/wbthomason/packer.nvim', packer_path})
