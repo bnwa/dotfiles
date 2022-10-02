@@ -25,19 +25,6 @@ require('packer').startup(function()
           }
         end
       }
-  use { 'akinsho/toggleterm.nvim', tag = 'v1.*',
-        config = function ()
-          local toggleterm = require 'toggleterm'
-          toggleterm.setup {
-            direction = 'float',
-            float_opts = {
-              border = 'shadow'
-            },
-            on_open = function(term) vim.cmd 'startinsert!' end,
-            open_mapping = '<C-Space>'
-          }
-        end
-      }
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' },
         config = function()
           require 'telescope'.setup {
