@@ -2,8 +2,8 @@ local g = vim.g
 local ex = vim.api.nvim_command
 local fn = vim.fn
 local opt = vim.opt
-local has_gui = require 'lib'.has_gui
-local is_neovide = require 'lib'.has_gui
+local cmd = vim.cmd
+local std = require 'lib'
 
 opt.background = 'light'
 opt.expandtab = true
@@ -28,7 +28,7 @@ opt.writebackup = false
 opt.updatetime = 100
 opt.visualbell = false
 
-if has_gui() and is_neovide() then
+if std.has_gui() and std.is_neovide() then
   g.neovide_cursor_animation_length = 0.08
   g.neovide_refresh_rate = 60
   g.neovide_remember_window_size = true
