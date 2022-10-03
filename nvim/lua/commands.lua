@@ -38,4 +38,4 @@ end
 
 new_cmd("Flick", toggle_background, { desc = "Toggle background to opposite of either 'light' or 'dark'" })
 new_cmd("Save", persist_session, { desc = "Save project session" })
-new_cmd("Open", restore_session, { desc = "Load project session" })
+new_cmd("Open", restore_session, { desc = "Load project session", nargs = "?" })
