@@ -36,6 +36,16 @@ local function restore_session(meta)
   end
 end
 
+local function list_sessions(arg_lead, cmd_line, cursor_pos)
+  local session_files = vim.fn.filter(vim.fn.readdir(session_path), function (i, file)
+    return file:find('.vim', -4) > 0
+  end)
+  local session_names = vim.fn.map(session_files, function (i, filename)
+    return filename:gsub('.vim', '')
+  end)
+  return session_names
+end
+
 new_cmd("Flick", toggle_background, { desc = "Toggle background to opposite of either 'light' or 'dark'" })
 new_cmd("Save", persist_session, { desc = "Save project session" })
-new_cmd("Open", restore_session, { desc = "Load project session", nargs = "?" })
+new_cmd("Open", restore_session, { desc = "Load project session", nargs = "?", complete = list_sessions })
