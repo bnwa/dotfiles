@@ -5,9 +5,9 @@ local extend = vim.tbl_extend
 local keymap = vim.keymap.set
 local is_directory = require 'lib'.is_directory
 
-local function set(modes, lhs, rhs, opts) 
+local function set(modes, lhs, rhs, opts)
   opts = opts and extend('force', { silent = true }, opts) or { silent = true }
-  keymap(modes, lhs, rhs, opts)  
+  keymap(modes, lhs, rhs, opts)
 end
 
 local function show_git_status()
@@ -63,6 +63,11 @@ g.mapleader = ','
 -- Treat wrapped lines as single line
 set('n', 'j', 'gj')
 set('n', 'k', 'gk')
+
+-- [[p]] & [[P]] don't match destination indent, should
+-- be default behavior
+set("n", "p", "]p")
+set("n", "P", "]P")
 
 -- Set terminal to normal mode (note the escape to '\')
 set("t", "<leader>l", "<C-\\><C-n>")
