@@ -14,7 +14,6 @@ require('packer').startup(function()
   use { 'tpope/vim-fugitive' }
   use { 'savq/melange' }
   use { "ellisonleao/gruvbox.nvim" }
-  use { 'neoclide/coc.nvim', branch = 'release' }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',
         config = function()
           require 'nvim-treesitter.configs'.setup {
@@ -35,7 +34,6 @@ require('packer').startup(function()
         end
       }
   use { 'nvim-telescope/telescope-packer.nvim', config = function() require 'telescope'.load_extension 'packer' end }
-  use { 'fannheyward/telescope-coc.nvim', config = function() require 'telescope'.load_extension 'coc' end }
 
   if packer_instance then require('packer').sync() end
 end)
