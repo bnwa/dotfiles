@@ -10,10 +10,37 @@ end
 -- Run `PackerSync` after any change
 require('packer').startup(function()
   use { 'wbthomason/packer.nvim' }
-  use { 'rafcamlet/nvim-luapad' }
-  use { 'tpope/vim-fugitive' }
-  use { 'savq/melange' }
-  use { "ellisonleao/gruvbox.nvim" }
+  use { "williamboman/mason.nvim",
+        config = function()
+          require 'mason'.setup {
+            ui = {
+              border = 'double',
+              icons = {
+                package_installed = "⦿",
+                package_pending = "⦷",
+                package_uninstalled = "⦻",
+              }
+            }
+          }
+        end
+        }
+  use { 'williamboman/mason-lspconfig.nvim',
+        config = function()
+          local mason_config = require 'mason-lspconfig'
+          mason_config.setup { automatic_installation = true }
+          mason_config.setup_handlers {
+            function(lsp_server_name)
+              local on_attach = function(client, buf_num)
+              end
+              require('lspconfig')[lsp_server_name].setup {}
+            end
+          }
+        end
+      }
+  use { 'neovim/nvim-lspconfig',
+        config = function ()
+        end
+      }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',
         config = function()
           require 'nvim-treesitter.configs'.setup {
@@ -34,6 +61,10 @@ require('packer').startup(function()
         end
       }
   use { 'nvim-telescope/telescope-packer.nvim', config = function() require 'telescope'.load_extension 'packer' end }
+  use { 'rafcamlet/nvim-luapad' }
+  use { 'tpope/vim-fugitive' }
+  use { "ellisonleao/gruvbox.nvim" }
+  use { 'savq/melange' }
 
   if packer_instance then require('packer').sync() end
 end)
