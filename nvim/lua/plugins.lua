@@ -29,7 +29,8 @@ require('packer').startup(function()
         config = function()
           require 'telescope'.setup {
             defaults = {
-              dynamic_preview_title = true
+              dynamic_preview_title = true,
+              layout_strategy = 'flex'
             }
           }
         end
