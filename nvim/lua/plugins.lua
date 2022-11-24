@@ -24,12 +24,24 @@ require('packer').startup(function()
           }
         end
         }
-  use { 'williamboman/mason-lspconfig.nvim',
+  use { 'williamboman/mason-lspconfig.nvim' }
+  use { 'neovim/nvim-lspconfig' }
+  use { 'L3MON4D3/LuaSnip' }
+  use { 'saadparwaiz1/cmp_luasnip' }
+  use { 'hrsh7th/cmp-nvim-lsp' }
+  use { 'hrsh7th/cmp-buffer' }
+  use { 'hrsh7th/cmp-path' }
+  use { 'hrsh7th/nvim-cmp',
         config = function()
+          local cmp = require 'cmp'
+          local cmp_lsp = require 'cmp_nvim_lsp'
+          local lsp_config = require 'lspconfig'
           local mason_config = require 'mason-lspconfig'
+
           mason_config.setup { automatic_installation = true }
           mason_config.setup_handlers {
             function(lsp_server_name)
+              local capabilities = cmp_lsp.default_capabilities()
               local on_attach = function(client, buf_num)
                 vim.diagnostic.config {
                   signs = false,
@@ -38,18 +50,36 @@ require('packer').startup(function()
                   }
                 }
               end
+
               require('lspconfig')[lsp_server_name].setup {
-                on_attach = on_attach
+                on_attach = on_attach,
+                capabilities = capabilities
               }
             end
           }
+          cmp.setup {
+            snippet = {
+              expand = function(args)
+                require('luasnip').lsp_expand(args.body)
+              end
+            },
+            mapping = cmp.mapping.preset.insert {
+              ['<C-n>'] = cmp.mapping.select_next_item(),
+              ['<C-p>'] = cmp.mapping.select_prev_item(),
+              ['<C-f>'] = cmp.mapping.scroll_docs(4),
+              ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+              ['<C-y>'] = cmp.mapping.confirm(),
+            },
+            sources = cmp.config.sources {
+              { name = 'nvim_lsp' },
+              { name = 'luasnip' },
+              {name = 'path' }
+            }
+          }
         end
       }
-  use { 'neovim/nvim-lspconfig',
-        config = function ()
-        end
-      }
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',
+  use { 'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
         config = function()
           require 'nvim-treesitter.configs'.setup {
             auto_install = true,
@@ -59,7 +89,8 @@ require('packer').startup(function()
           }
         end
       }
-  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' },
+  use { 'nvim-telescope/telescope.nvim',
+        requires = { 'nvim-lua/plenary.nvim' },
         config = function()
           require 'telescope'.setup {
             defaults = {
@@ -68,7 +99,8 @@ require('packer').startup(function()
           }
         end
       }
-  use { 'nvim-telescope/telescope-packer.nvim', config = function() require 'telescope'.load_extension 'packer' end }
+  use { 'nvim-telescope/telescope-packer.nvim',
+        config = function() require 'telescope'.load_extension 'packer' end }
   use { 'rafcamlet/nvim-luapad' }
   use { 'tpope/vim-fugitive' }
   use { "ellisonleao/gruvbox.nvim" }
