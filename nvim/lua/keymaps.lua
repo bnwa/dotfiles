@@ -1,6 +1,7 @@
 local g = vim.g
 local api = vim.api
 local cmd = vim.cmd
+local lsp = vim.lsp
 local extend = vim.tbl_extend
 local keymap = vim.keymap.set
 local is_directory = require 'lib'.is_directory
@@ -8,10 +9,6 @@ local is_directory = require 'lib'.is_directory
 local function set(modes, lhs, rhs, opts)
   opts = opts and extend('force', { silent = true }, opts) or { silent = true }
   keymap(modes, lhs, rhs, opts)
-end
-
-local function show_git_status()
-  cmd 'Git'
 end
 
 local function pick_dir_files()
@@ -22,40 +19,6 @@ local function pick_git_files()
   require('telescope.builtin').git_files { 
     show_untracked = true
   }
-end
-
-local function pick_help_files()
-  require('telescope.builtin').help_tags {}
-end
-
-local function pick_packer_plugins()
-  require('telescope').extensions.packer.packer {}
-end
-
-local function pick_buffer_commits()
-  require('telescope.builtin').git_bcommits {}
-end
-
-local function pick_file_commits()
-  require('telescope.builtin').git_commits {}
-end
-
-local function get_lsp_picker(picker)
-  return function()
-    require('telescope').extensions.coc[picker] {}
-  end
-end
-
-local function pick_files()
-  if is_directory('.git') then
-    pick_git_files()
-  else
-    pick_dir_files()
-  end
-end
-
-local function pick_register()
-  require('telescope.builtin').registers {}
 end
 
 g.mapleader = ','
@@ -95,20 +58,34 @@ set("n", "<C-L>", "<C-W><C-L>")
 set("n", "<C-H>", "<C-W><C-H>")
 
 -- Telescope
-set("n", [[<C-p>]],     pick_files)
-set("n", [[<C-g>o]],    pick_buffer_commits)
-set("n", [[<C-g>p]],    pick_file_commits)
-set("n", [[<C-g>s]],    show_git_status)
-set("n", [[<Space>h]],  pick_help_files)
-set("n", [[<Space>p]],  pick_packer_plugins)
---set("n", [[<Space>e]],  get_lsp_picker('diagnostics'))
---set("n", [[<Space>o]],  get_lsp_picker('document_symbols'))
+set("n", [[<C-p>]],     function() return is_directory('.git') and pick_git_files() or pick_dir_files() end, {
+  desc = "List and select from workspace files" })
+set("n", [[<C-g>o]],    function() require('telescope.builtin').git_bcommits {} end, {
+  desc = "Lists commit history for current buffer file" })
+set("n", [[<C-g>p]],    function() require('telescope.builtin').git_commits {} end, {
+  desc = "Lists commit history for current workspace repo" })
+set("n", [[<C-g>s]],    function() cmd 'Git' end, {
+  desc = "Open Fugitive Git status window" })
+set("n", [[<Space>h]],  function() require('telescope.builtin').help_tags {} end, {
+  desc = "List and select from all available help files" })
+set("n", [[<Space>p]],  function() require('telescope').extensions.packer.packer {} end, {
+  desc = "List all installed plugins managed by Packer" })
+set("n", [[<Space>e]],  function() require('telescope.builtin').diagnostics {} end, {
+  desc = "Show diagnostics" })
+set("n", [[<Space>o]],  function() require('telescope.builtin').lsp_document_symbols {} end, {
+  desc = "Show and query all symbols in current buffer" })
 --set("n", [[<Space>m]],  get_lsp_picker('commands'))
---set("n", [[<Space>a]],  get_lsp_picker('code_actions'))
---set("n", [[<Space>wo]], get_lsp_picker('workspace_symbols'))
+set("n", [[<Space>a]],  function() lsp.buf.code_action {} end, {
+  desc = "Show native code action UI at cursor position" })
+set("n", [[<Space>wo]], function() require('telescope.builtin').lsp_dynamic_workspace_symbols {} end, {
+  desc = "Query all symbols in current workspace" })
 --set("n", [[<Space>fa]], get_lsp_picker('file_code_actions'))
 --set("n", [[<Space>la]], get_lsp_picker('line_code_actions'))
---set("n", [[<Space>gr]], get_lsp_picker('references'))
---set("n", [[<Space>gi]], get_lsp_picker('implementations'))
---set("n", [[<Space>gd]], get_lsp_picker('definitions'))
-set("n", [[<Space>']],  pick_register)
+set("n", [[<Space>gr]], function() require('telescope.builtin').lsp_references { jump_type = 'vsplit' } end, {
+  desc = "Lists LSP references for word under the cursor, jumps to reference otherwise" })
+set("n", [[<Space>gi]], function() require('telescope.builtin').lsp_implementations { jump_type = 'vsplit' } end, {
+  desc = "Goto the implementation of the word under the cursor if there's only one, otherwise show all options in Telescope" })
+set("n", [[<Space>gd]], function() require('telescope.builtin').lsp_definitions { jump_type = 'vsplit' }end, {
+  desc = "Goto the definition of the word under the cursor, if there's only one, otherwise show all options in Telescope" })
+set("n", [[<Space>']],  function() require('telescope.builtin').registers {} end, {
+  desc = "List all registers and select a register to yank from" })

@@ -31,8 +31,16 @@ require('packer').startup(function()
           mason_config.setup_handlers {
             function(lsp_server_name)
               local on_attach = function(client, buf_num)
+                vim.diagnostic.config {
+                  signs = false,
+                  underline = {
+                    severity = vim.diagnostic.severity.ERROR
+                  }
+                }
               end
-              require('lspconfig')[lsp_server_name].setup {}
+              require('lspconfig')[lsp_server_name].setup {
+                on_attach = on_attach
+              }
             end
           }
         end
