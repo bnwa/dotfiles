@@ -5,7 +5,7 @@ local opt = vim.opt
 local cmd = vim.cmd
 local std = require 'lib'
 
-opt.background = 'light'
+opt.background = 'dark'
 opt.expandtab = true
 opt.gdefault = true
 opt.laststatus = 2
