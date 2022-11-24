@@ -64,11 +64,6 @@ g.mapleader = ','
 set('n', 'j', 'gj')
 set('n', 'k', 'gk')
 
--- [[p]] & [[P]] don't match destination indent, should
--- be default behavior
-set("n", "p", "]p")
-set("n", "P", "]P")
-
 -- Set terminal to normal mode (note the escape to '\')
 set("t", "<leader>l", "<C-\\><C-n>")
 
