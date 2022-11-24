@@ -16,7 +16,7 @@ opt.relativenumber = true
 opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.shortmess:append "c"
-opt.splitbelow = true
+opt.splitbelow = false
 opt.splitright = false
 opt.swapfile = false
 opt.tabstop = 2
