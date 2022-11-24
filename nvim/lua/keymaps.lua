@@ -77,7 +77,7 @@ set("n", "<leader>k", ":nohlsearch<CR>")
 set("n", "<leader>rn", ":call CocActionAsync('rename')<CR>")
 
 -- Show symbol type
-set("n", "<space>d", ":call CocAction('doHover')<CR>")
+set("n", "<space>d", ":call CocActionAsync('definitionHover')<CR>")
 
 -- Simplify pane switching
 -- by default: move cursor down linewise
