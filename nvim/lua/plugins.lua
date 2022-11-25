@@ -29,8 +29,10 @@ require('packer').startup(function()
   use { 'L3MON4D3/LuaSnip' }
   use { 'saadparwaiz1/cmp_luasnip' }
   use { 'hrsh7th/cmp-nvim-lsp' }
+  use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
   use { 'hrsh7th/cmp-buffer' }
   use { 'hrsh7th/cmp-path' }
+  use { 'hrsh7th/cmp-cmdline' }
   use { 'hrsh7th/nvim-cmp',
         config = function()
           local cmp = require 'cmp'
@@ -73,12 +75,23 @@ require('packer').startup(function()
               ['<C-b>'] = cmp.mapping.scroll_docs(-4),
               ['<C-y>'] = cmp.mapping.confirm(),
             },
-            sources = cmp.config.sources {
+            sources = cmp.config.sources({
               { name = 'nvim_lsp' },
-              { name = 'luasnip' },
-              {name = 'path' }
-            }
+              { name = 'nvim_lsp_signature_help' },
+              { name = 'luasnip' }
+            }, {
+              { name = 'buffer' },
+              { name = 'path' },
+            })
           }
+          cmp.setup.cmdline('/', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({ { name = 'nvim_lsp_document_symbol' } }, { { name = 'buffer' } })
+          })
+          cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({{ name = 'path' }}, {{ name = 'cmdline' }})
+          })
         end
       }
   use { 'nvim-treesitter/nvim-treesitter',
