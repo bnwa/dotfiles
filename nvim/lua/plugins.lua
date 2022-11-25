@@ -7,8 +7,15 @@ if not is_directory(packer_path) then
   packer_instance = fn.system({'git', 'clone', '--depth=1', 'https://github.com/wbthomason/packer.nvim', packer_path})
 end
 
--- Run `PackerSync` after any change
-require('packer').startup(function()
+local packer_config = {
+  display = {
+    open_fn = function()
+      return require('packer.util').float()
+    end
+  }
+}
+
+local packer_spec = function()
   use { 'wbthomason/packer.nvim' }
   use { "williamboman/mason.nvim",
         config = function()
@@ -123,4 +130,7 @@ require('packer').startup(function()
   use { 'savq/melange' }
 
   if packer_instance then require('packer').sync() end
-end)
+end
+
+-- Run `PackerSync` after any change
+require('packer').startup({ packer_spec, config = packer_config })
