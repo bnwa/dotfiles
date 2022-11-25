@@ -42,10 +42,12 @@ set("n", "<leader>r", ":source $MYVIMRC<CR>", { silent = false })
 set("n", "<leader>k", ":nohlsearch<CR>")
 
 -- Rename symbol
-set("n", "<leader>rn", ":call CocActionAsync('rename')<CR>")
+set("n", "<leader>rn", function () vim.lsp.buf.rename() end, {
+  desc = "Renames all references to the symbol under the cursor" })
 
 -- Show symbol type
-set("n", "<space>d", ":call CocAction('doHover')<CR>")
+set("n", "<space>d", function () vim.lsp.buf.hover() end, {
+  desc = "Displays hover information about the symbol under the cursor in a floating window. Calling the function twice will jump into the floating window" })
 
 -- Simplify pane switching
 -- by default: move cursor down linewise
