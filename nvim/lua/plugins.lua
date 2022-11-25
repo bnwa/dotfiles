@@ -33,6 +33,7 @@ local packer_spec = function()
         }
   use { 'williamboman/mason-lspconfig.nvim' }
   use { 'neovim/nvim-lspconfig' }
+  use { 'jose-elias-alvarez/typescript.nvim' }
   use { 'L3MON4D3/LuaSnip' }
   use { 'saadparwaiz1/cmp_luasnip' }
   use { 'hrsh7th/cmp-nvim-lsp' }
@@ -54,18 +55,15 @@ local packer_spec = function()
           mason_config.setup { automatic_installation = true }
           mason_config.setup_handlers {
             function(lsp_server_name)
-              local on_attach = function(client, buf_num)
-                vim.diagnostic.config {
-                  signs = false,
-                  underline = {
-                    severity = vim.diagnostic.severity.ERROR
-                  }
-                }
-              end
-
               require('lspconfig')[lsp_server_name].setup {
-                on_attach = on_attach,
                 capabilities = capabilities
+              }
+            end,
+            ['tsserver'] = function()
+              require('typescript').setup {
+                server = {
+                  capabilities = capabilities
+                }
               }
             end
           }
@@ -99,6 +97,17 @@ local packer_spec = function()
             mapping = cmp.mapping.preset.cmdline(),
             sources = cmp.config.sources({{ name = 'path' }}, {{ name = 'cmdline' }})
           })
+          vim.diagnostic.config {
+            signs = false,
+            underline = {
+              severity = vim.diagnostic.severity.ERROR
+            }
+          }
+        end
+      }
+  use { 'weilbith/nvim-code-action-menu',
+        config = function()
+          require('code_action_menu')
         end
       }
   use { 'nvim-treesitter/nvim-treesitter',
@@ -117,7 +126,8 @@ local packer_spec = function()
         config = function()
           require 'telescope'.setup {
             defaults = {
-              dynamic_preview_title = true
+              dynamic_preview_title = true,
+              layout_strategy = 'flex'
             }
           }
         end
