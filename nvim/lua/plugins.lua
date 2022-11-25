@@ -37,11 +37,14 @@ require('packer').startup(function()
           local cmp_lsp = require 'cmp_nvim_lsp'
           local lsp_config = require 'lspconfig'
           local mason_config = require 'mason-lspconfig'
+          local capabilities = vim.tbl_deep_extend('force',
+            {},
+            lsp_config.util.default_config.capabilities,
+            cmp_lsp.default_capabilities())
 
           mason_config.setup { automatic_installation = true }
           mason_config.setup_handlers {
             function(lsp_server_name)
-              local capabilities = cmp_lsp.default_capabilities()
               local on_attach = function(client, buf_num)
                 vim.diagnostic.config {
                   signs = false,
