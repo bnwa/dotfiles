@@ -28,4 +28,11 @@ function M.nearest_path_name(abs_path)
   return nearest_path
 end
 
+function M.is_night()
+  local date_str = os.date()
+  local date_parts = vim.split(date_str, '[%s%p]')
+  local date_hour = vim.fn.str2nr(date_parts[4])
+  if date_hour > 17 then return true else return false end
+end
+
 return M
