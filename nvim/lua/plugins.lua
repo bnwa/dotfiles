@@ -133,7 +133,16 @@ local packer_spec = function()
         end
       }
   use { 'nvim-telescope/telescope-packer.nvim',
-        config = function() require 'telescope'.load_extension 'packer' end }
+        config = function() require 'telescope'.load_extension 'packer' end
+      }
+  use { 'olimorris/persisted.nvim',
+        config = function ()
+          require('persisted').setup {
+            use_git_branch = true
+          }
+          require('telescope').load_extension 'persisted'
+        end
+      }
   use { 'rafcamlet/nvim-luapad' }
   use { 'tpope/vim-fugitive' }
   use { "ellisonleao/gruvbox.nvim" }
