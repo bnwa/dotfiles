@@ -143,6 +143,15 @@ local packer_spec = function()
           require('telescope').load_extension 'persisted'
         end
       }
+  use { 'akinsho/toggleterm.nvim',
+        tag = '*',
+        config = function ()
+          require('toggleterm').setup {
+            direction = 'float',
+            open_mapping = [[<C-\>]]
+          }
+        end
+      }
   use { 'rafcamlet/nvim-luapad' }
   use { 'tpope/vim-fugitive' }
   use { "ellisonleao/gruvbox.nvim" }
