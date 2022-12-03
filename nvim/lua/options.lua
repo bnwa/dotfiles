@@ -39,5 +39,6 @@ if std.has_gui() and std.is_neovide() then
   g.neovide_remember_window_size = true
   opt.termguicolors = true
   ex 'colorscheme gruvbox'
+  ex 'cd ~'
 end
 
