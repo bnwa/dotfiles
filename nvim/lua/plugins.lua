@@ -138,6 +138,7 @@ local packer_spec = function()
   use { 'olimorris/persisted.nvim',
         config = function ()
           require('persisted').setup {
+            ignored_dirs = { '/', '~', '~/Github', '~/Source' },
             use_git_branch = true
           }
           require('telescope').load_extension 'persisted'
