@@ -153,6 +153,15 @@ local packer_spec = function()
           }
         end
       }
+  use { "folke/which-key.nvim",
+        config = function()
+          require("which-key").setup {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+          }
+        end
+  }
   use { 'rafcamlet/nvim-luapad' }
   use { 'tpope/vim-fugitive' }
   use { "ellisonleao/gruvbox.nvim" }
