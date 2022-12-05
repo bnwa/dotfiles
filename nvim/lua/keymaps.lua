@@ -1,5 +1,4 @@
 local g = vim.g
-local api = vim.api
 local cmd = vim.cmd
 local extend = vim.tbl_extend
 local keymap = vim.keymap.set
@@ -19,7 +18,7 @@ local function pick_dir_files()
 end
 
 local function pick_git_files()
-  require('telescope.builtin').git_files { 
+  require('telescope.builtin').git_files {
     show_untracked = true
   }
 end
@@ -28,8 +27,8 @@ local function pick_help_files()
   require('telescope.builtin').help_tags {}
 end
 
-local function pick_packer_plugins()
-  require('telescope').extensions.packer.packer {}
+local function pick_persisted_sessions()
+  require('telescope').extensions.persisted.persisted {}
 end
 
 local function pick_buffer_commits()
@@ -95,7 +94,7 @@ set("n", [[<C-g>o]],    pick_buffer_commits)
 set("n", [[<C-g>p]],    pick_file_commits)
 set("n", [[<C-g>s]],    show_git_status)
 set("n", [[<Space>h]],  pick_help_files)
-set("n", [[<Space>p]],  pick_packer_plugins)
+set("n", [[<Space>p]],  pick_persisted_sessions)
 set("n", [[<Space>e]],  get_lsp_picker('diagnostics'))
 set("n", [[<Space>o]],  get_lsp_picker('document_symbols'))
 set("n", [[<Space>m]],  get_lsp_picker('commands'))

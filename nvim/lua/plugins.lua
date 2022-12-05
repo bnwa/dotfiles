@@ -42,8 +42,34 @@ local packer_spec = function()
           }
         end
       }
-  use { 'nvim-telescope/telescope-packer.nvim', config = function() require 'telescope'.load_extension 'packer' end }
   use { 'fannheyward/telescope-coc.nvim', config = function() require 'telescope'.load_extension 'coc' end }
+  use { 'olimorris/persisted.nvim',
+        config = function ()
+          require('persisted').setup {
+            ignored_dirs = { '/', '~', '~/Github', '~/Source' },
+            use_git_branch = true
+          }
+          require('telescope').load_extension 'persisted'
+        end
+      }
+  use { 'akinsho/toggleterm.nvim',
+        tag = '*',
+        config = function ()
+          require('toggleterm').setup {
+            direction = 'float',
+            open_mapping = [[<C-\>]]
+          }
+        end
+      }
+  use { "folke/which-key.nvim",
+        config = function()
+          require("which-key").setup {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+          }
+        end
+  }
 
   if packer_instance then require('packer').sync() end
 end
