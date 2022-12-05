@@ -16,10 +16,11 @@ opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.shortmess:append "c"
 opt.splitbelow = false
-opt.splitright = false
+opt.splitright = true
 opt.swapfile = false
 opt.tabstop = 2
 opt.termguicolors = false
+opt.timeoutlen = 500
 opt.wildignore:append '*/node_modules/*'
 opt.wildignore:append '/.git'
 opt.wrap = false
