@@ -1,10 +1,11 @@
 local fn = vim.fn
 local is_directory = require('lib').is_directory
 local packer_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-local packer_instance = nil
+local packer_bootstrapped = false
 
 if not is_directory(packer_path) then
-  packer_instance = fn.system({'git', 'clone', '--depth=1', 'https://github.com/wbthomason/packer.nvim', packer_path})
+  fn.system {'git', 'clone', '--depth=1', 'https://github.com/wbthomason/packer.nvim', packer_path}
+  packer_bootstrapped = vim.v.shell_error == 0
 end
 
 local packer_config = {
@@ -167,7 +168,7 @@ local packer_spec = function()
   use { "ellisonleao/gruvbox.nvim" }
   use { 'savq/melange' }
 
-  if packer_instance then require('packer').sync() end
+  if packer_bootstrapped then require('packer').sync() end
 end
 
 -- Run `PackerSync` after any change
