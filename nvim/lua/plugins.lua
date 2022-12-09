@@ -10,9 +10,7 @@ end
 
 local packer_config = {
   display = {
-    open_fn = function()
-      return require('packer.util').float()
-    end
+    open_fn = require('packer.util').float
   }
 }
 
