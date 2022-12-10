@@ -1,8 +1,8 @@
 if test -r /opt/homebrew
-  set -gx LDFLAGS "-L/opt/homebrew/opt/node@16/lib"
-  set -gx CPPFLAGS "-I/opt/homebrew/opt/node@16/include"
+  set -gx LDFLAGS "-L/opt/homebrew/opt/node@18/lib"
+  set -gx CPPFLAGS "-I/opt/homebrew/opt/node@18/include"
   fish_add_path -U /opt/homebrew/bin
-  fish_add_path -U /opt/homebrew/opt/node@16/bin
+  fish_add_path -U /opt/homebrew/opt/node@18/bin
 end
 
 if test -r /usr/local/Homebrew
