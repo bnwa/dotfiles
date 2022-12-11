@@ -1,6 +1,6 @@
+local util = require 'util'
 local new_cmd = vim.api.nvim_create_user_command
 local notify = vim.notify
-local std = require 'lib'
 local cmd = vim.cmd
 local opt = vim.opt
 local fn = vim.fn
@@ -15,7 +15,7 @@ end
 
 local function persist_session()
   local cwd = fn.getcwd()
-  local dir = std.nearest_path_name(cwd)
+  local dir = vim.fn.basename(cwd)
   cmd('mksession! ' .. session_path ..'/' .. dir .. '.vim')
   notify('Session saved for current directory')
 end
@@ -23,12 +23,12 @@ end
 local function restore_session(meta)
   local args = meta.fargs 
   local arg = args[1]
-  local name = '' ~= arg and arg or std.nearest_path_name(fn.getcwd())
+  local name = '' ~= arg and arg or vim.fn.basename(fn.getcwd())
   local session = '' ~= name and session_path .. '/' .. name .. '.vim' or nil
 
   if not session then return end
 
-  if std.file_readable(session) then
+  if util.file_readable(session) then
     cmd('%bdelete!')
     cmd('source ' .. session)
   else

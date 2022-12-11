@@ -1,10 +1,8 @@
-local g = vim.g
-local api = vim.api
-local cmd = vim.cmd
-local lsp = vim.lsp
+local util = require 'util'
 local extend = vim.tbl_extend
 local keymap = vim.keymap.set
-local is_directory = require 'lib'.is_directory
+local cmd = vim.cmd
+local g = vim.g
 
 local function set(modes, lhs, rhs, opts)
   opts = opts and extend('force', { silent = true }, opts) or { silent = true }
@@ -58,7 +56,7 @@ set("n", "<C-L>", "<C-W><C-L>")
 set("n", "<C-H>", "<C-W><C-H>")
 
 -- Telescope
-set("n", [[<C-p>]],     function() if is_directory('.git') then pick_git_files() else pick_dir_files() end end, {
+set("n", [[<C-p>]],     function() if util.is_directory('.git') then pick_git_files() else pick_dir_files() end end, {
   desc = "List and select from workspace files" })
 set("n", [[<C-g>o]],    function() require('telescope.builtin').git_bcommits {} end, {
   desc = "Lists commit history for current buffer file" })

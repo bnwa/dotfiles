@@ -1,6 +1,12 @@
-local config_path = vim.fn.stdpath('config') .. '/lua/'
-local config_order = { 'plugins', 'options', 'colors', 'commands', 'autocmds', 'keymaps' }
-
-for _,config_file in ipairs(config_order) do
-  dofile(config_path .. config_file .. '.lua')
-end
+require 'options'
+require 'plugins'
+require 'plugins.treesitter'
+require 'plugins.lsp'
+require 'plugins.cmp'
+require 'plugins.telescope'
+require 'plugins.code-action-menu'
+require 'plugins.which-key'
+require 'autocmds'
+require 'commands'
+require 'colorscheme'
+require 'keymaps'
