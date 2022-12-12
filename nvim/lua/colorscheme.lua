@@ -9,9 +9,7 @@ else
 end
 
 
-if util.has_gui() and util.is_neovide() then
-  cmd.colorscheme 'gruvbox'
-end
+cmd.colorscheme 'gruvbox'
 
 cmd("hi! link Visual Search")
 cmd("hi! link PMenu Search")
