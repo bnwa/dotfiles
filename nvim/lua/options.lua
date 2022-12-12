@@ -40,3 +40,6 @@ if std.has_gui() and std.is_neovide() then
   ex 'cd ~'
 end
 
+if not std.has_gui() then
+  vim.cmd.colorscheme 'gruvbox'
+end
