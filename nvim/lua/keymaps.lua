@@ -56,8 +56,7 @@ set("n", "<C-L>", "<C-W><C-L>")
 set("n", "<C-H>", "<C-W><C-H>")
 
 -- Telescope
-set("n", [[<C-p>]],     function() if util.is_directory('.git') then pick_git_files() else pick_dir_files() end end, {
-  desc = "List and select from workspace files" })
+set("n", [[<C-p>]],     pick_dir_files, { desc = "List and select from workspace files" })
 set("n", [[<C-g>o]],    function() require('telescope.builtin').git_bcommits {} end, {
   desc = "Lists commit history for current buffer file" })
 set("n", [[<C-g>p]],    function() require('telescope.builtin').git_commits {} end, {
