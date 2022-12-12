@@ -11,5 +11,24 @@
     "shadow": false
   },
   "list.alignColumns": true,
-  "suggest.defaultSortMethod": "alphabetical"
+  "Lua.completion.callSnippet": "Both",
+  "Lua.completion.keywordSnippet": "Both",
+  "Lua.diagnostics.globals": [
+    "vim"
+  ],
+  "Lua.hint.arrayIndex": "Disable",
+  "Lua.hint.paramName": "Disable",
+  "Lua.hint.paramType": false,
+  "Lua.runtime.path": [
+    "?.lua",
+    "?/init.lua"
+  ],
+  "Lua.runtime.version": "Lua 5.1",
+  "Lua.telemetry.enable": false,
+  "Lua.workspace.checkThirdParty": false,
+  "Lua.workspace.library": [
+    "~/.local/share/nvim/site/pack/packer/start"
+  ],
+  "sumneko-lua.enable": true,
+  "sumneko-lua.enableNvimLuaDev": true
 }
