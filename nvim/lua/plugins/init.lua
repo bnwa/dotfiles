@@ -36,7 +36,7 @@ local packer_plugins = function (use)
   use { 'saadparwaiz1/cmp_luasnip' }
   use { 'hrsh7th/cmp-nvim-lsp' }
   use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
-  use { 'hrsh7th/cmp-nvim-lua' }
+  use { 'hrsh7th/cmp-nvim-lsp-document-symbol' }
   use { 'hrsh7th/cmp-path' }
   use { 'weilbith/nvim-code-action-menu' }
   use { 'folke/which-key.nvim' }
