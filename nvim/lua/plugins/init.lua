@@ -51,6 +51,7 @@ local packer_plugins = function (use)
   use { 'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use { 'tpope/vim-surround' }
   use { 'tpope/vim-commentary' }
+  use { 'onsails/lspkind.nvim' }
   if packer_init then packer.sync() end
 end
 

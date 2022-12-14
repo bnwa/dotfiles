@@ -1,7 +1,8 @@
 local cmp_ok, cmp = pcall(require, 'cmp')
 local snip_ok, luasnip = pcall(require, 'luasnip')
+local kind_ok, lsp_kind = pcall(require, 'lspkind')
 
-if not cmp_ok or not snip_ok then return end
+if not cmp_ok or not snip_ok or not kind_ok then return end
 
 cmp.setup {
   snippet = {
@@ -24,7 +25,17 @@ cmp.setup {
   }, {
     { name = 'buffer' },
     { name = 'path' },
-  })
+  }),
+  formatting = {
+    format = lsp_kind.cmp_format {
+      before = function(entry, vim_item)
+        return vim_item
+      end,
+      elipsis_char = '...',
+      max_width = 50,
+      mode = 'symbol_text',
+    }
+  },
 }
 cmp.setup.cmdline('/', {
   mapping = cmp.mapping.preset.cmdline(),
