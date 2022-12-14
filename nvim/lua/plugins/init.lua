@@ -43,7 +43,6 @@ local packer_plugins = function (use)
   use { 'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = { 'nvim-lua/plenary.nvim' } }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
   use { 'nvim-telescope/telescope-packer.nvim' }
-  use { 'nvim-telescope/telescope-file-browser.nvim' }
   use { 'rafcamlet/nvim-luapad' }
   use { 'tpope/vim-fugitive' }
   use { 'ellisonleao/gruvbox.nvim' }
@@ -52,6 +51,7 @@ local packer_plugins = function (use)
   use { 'tpope/vim-surround' }
   use { 'tpope/vim-commentary' }
   use { 'onsails/lspkind.nvim' }
+  use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } }
   if packer_init then packer.sync() end
 end
 
