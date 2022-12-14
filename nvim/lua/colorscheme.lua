@@ -9,8 +9,10 @@ else
 end
 
 
-cmd.colorscheme 'gruvbox'
+if util.is_neovide() then
+  cmd.colorscheme 'melange'
+end
 
-cmd("hi! link Visual Search")
-cmd("hi! link PMenu Search")
-cmd("hi! link CocUnusedHighlight Todo")
+cmd 'hi! link Visual Search'
+cmd 'hi! link PMenu Search'
+cmd 'hi! link CocUnusedHighlight Todo'
