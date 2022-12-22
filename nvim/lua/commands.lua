@@ -21,7 +21,7 @@ local function persist_session()
 end
 
 local function restore_session(meta)
-  local args = meta.fargs 
+  local args = meta.fargs
   local arg = args[1]
   local name = '' ~= arg and arg or vim.fn.basename(fn.getcwd())
   local session = '' ~= name and session_path .. '/' .. name .. '.vim' or nil
