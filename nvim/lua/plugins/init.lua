@@ -21,40 +21,47 @@ local packer_config = {
 
 local packer_plugins = function (use)
   use { 'wbthomason/packer.nvim' }
+  -- LSP
   use { 'williamboman/mason.nvim' }
   use { 'williamboman/mason-lspconfig.nvim' }
   use { 'neovim/nvim-lspconfig' }
+  use { 'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use { 'jose-elias-alvarez/typescript.nvim' }
+  use { 'mfussenegger/nvim-jdtls' }
   use { 'folke/neodev.nvim' }
   use { 'j-hui/fidget.nvim' }
+  use { 'weilbith/nvim-code-action-menu' }
+  -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ":TSUpdate" }
   use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+  -- Snippets
   use { 'L3MON4D3/LuaSnip' }
-  use { 'hrsh7th/nvim-cmp' }
-  use { 'hrsh7th/cmp-buffer' }
-  use { 'hrsh7th/cmp-cmdline' }
+  -- Autocomplete
+  use { 'hrsh7th/nvim-cmp', requires = { 'onsails/lspkind.nvim' } }
   use { 'saadparwaiz1/cmp_luasnip' }
-  use { 'hrsh7th/cmp-nvim-lsp' }
   use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
   use { 'hrsh7th/cmp-nvim-lsp-document-symbol' }
   use { 'hrsh7th/cmp-path' }
-  use { 'weilbith/nvim-code-action-menu' }
-  use { 'folke/which-key.nvim' }
+  use { 'hrsh7th/cmp-buffer' }
+  use { 'hrsh7th/cmp-cmdline' }
+  use { 'hrsh7th/cmp-nvim-lsp' }
+  -- FS
+  use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } }
+  -- Additional Behavior
   use { 'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = { 'nvim-lua/plenary.nvim' } }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
   use { 'nvim-telescope/telescope-packer.nvim' }
-  use { 'rafcamlet/nvim-luapad' }
+  use { 'folke/which-key.nvim' }
   use { 'tpope/vim-fugitive' }
-  use { 'ellisonleao/gruvbox.nvim' }
-  use { 'savq/melange' }
-  use { 'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use { 'tpope/vim-surround' }
-  use { 'onsails/lspkind.nvim' }
-  use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } }
+  use { 'rafcamlet/nvim-luapad' }
   use { 'numToStr/Comment.nvim' }
-  use { 'ramojus/mellifluous.nvim', requires = {'rktjmp/lush.nvim'} }
+  -- Colorschemes
+  use { 'savq/melange' }
   use { 'rose-pine/neovim', as = 'rose-pine' }
   use { 'sainnhe/gruvbox-material' }
+  use { 'ellisonleao/gruvbox.nvim' }
+  use { 'ramojus/mellifluous.nvim', requires = {'rktjmp/lush.nvim'} }
   if packer_init then packer.sync() end
 end
 
