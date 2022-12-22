@@ -65,8 +65,8 @@ set("n", [[<C-g>s]],    function() cmd 'Git' end, {
   desc = "Open Fugitive Git status window" })
 set("n", [[<Space>h]],  function() require('telescope.builtin').help_tags {} end, {
   desc = "List and select from all available help files" })
-set("n", [[<Space>p]],  function() require('telescope').extensions.persisted.persisted {} end, {
-  desc = "List all installed plugins managed by Packer" })
+--set("n", [[<Space>p]],  function() require('telescope').extensions.persisted.persisted {} end, {
+--  desc = "List all installed plugins managed by Packer" })
 set("n", [[<Space>e]],  function() require('telescope.builtin').diagnostics {} end, {
   desc = "Show diagnostics" })
 set("n", [[<Space>o]],  function() require('telescope.builtin').lsp_document_symbols {} end, {
