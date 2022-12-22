@@ -49,9 +49,9 @@ local packer_plugins = function (use)
   use { 'savq/melange' }
   use { 'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use { 'tpope/vim-surround' }
-  use { 'tpope/vim-commentary' }
   use { 'onsails/lspkind.nvim' }
   use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } }
+  use { 'numToStr/Comment.nvim' }
   use { 'ramojus/mellifluous.nvim', requires = {'rktjmp/lush.nvim'} }
   use { 'rose-pine/neovim', as = 'rose-pine' }
   use { 'sainnhe/gruvbox-material' }
