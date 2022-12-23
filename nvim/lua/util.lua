@@ -28,5 +28,10 @@ function M.is_night()
   if date_hour > 17 or date_hour < 6 then return true else return false end
 end
 
+function M.project_root_path(root_files)
+  root_files = root_files or { 'pom.xml', 'package.json', '.git' }
+  return vim.fs.dirname(vim.fs.find(root_files, { upwards = true })[1])
+end
+
 return M
 
