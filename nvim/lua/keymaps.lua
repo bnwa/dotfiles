@@ -86,3 +86,7 @@ set("n", [[<Space>gd]], function() require('telescope.builtin').lsp_definitions 
   desc = "Goto the definition of the word under the cursor, if there's only one, otherwise show all options in Telescope" })
 set("n", [[<Space>']],  function() require('telescope.builtin').registers {} end, {
   desc = "List all registers and select a register to yank from" })
+set('n', [[<C-\>]], function() require('FTerm').toggle() end, {
+  desc = 'Toggle a floating terminal' })
+set('t', [[<C-\>]], function() require('FTerm').toggle() end, {
+  desc = 'Toggle a floating terminal' })
