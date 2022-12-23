@@ -10,6 +10,17 @@
     "focusable": false,
     "shadow": false
   },
+  "java.completion.favoriteStaticMembers": [
+    "org.junit.Assert.*",
+    "org.junit.Assume.*",
+    "org.junit.jupiter.api.Assertions.*",
+    "org.junit.jupiter.api.Assumptions.*",
+    "org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*",
+    "org.springframework.test.web.servlet.request.MockMvcResultMatchers.*",
+    "org.mockito.ArgumentMatchers.*",
+    "org.mockito.Mockito.*",
+    "org.mockito.Answers.*",
+  ],
   "list.alignColumns": true,
   "Lua.completion.callSnippet": "Both",
   "Lua.completion.keywordSnippet": "Both",
