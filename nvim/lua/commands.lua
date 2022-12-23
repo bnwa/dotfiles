@@ -15,7 +15,7 @@ end
 
 local function persist_session()
   local cwd = fn.getcwd()
-  local dir = vim.fn.basename(cwd)
+  local dir = vim.fs.basename(cwd)
   cmd('mksession! ' .. session_path ..'/' .. dir .. '.vim')
   notify('Session saved for current directory')
 end
@@ -23,7 +23,7 @@ end
 local function restore_session(meta)
   local args = meta.fargs
   local arg = args[1]
-  local name = '' ~= arg and arg or vim.fn.basename(fn.getcwd())
+  local name = '' ~= arg and arg or vim.fs.basename(fn.getcwd())
   local session = '' ~= name and session_path .. '/' .. name .. '.vim' or nil
 
   if not session then return end
@@ -37,10 +37,10 @@ local function restore_session(meta)
 end
 
 local function list_sessions(arg_lead, cmd_line, cursor_pos)
-  local session_files = vim.fn.filter(vim.fn.readdir(session_path), function (i, file)
+  local session_files = vim.fn.filter(vim.fn.readdir(session_path), function (_, file)
     return file:find('.vim', -4) > 0
   end)
-  local session_names = vim.fn.map(session_files, function (i, filename)
+  local session_names = vim.fn.map(session_files, function (_, filename)
     return filename:gsub('.vim', '')
   end)
   return session_names
