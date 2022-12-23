@@ -10,11 +10,6 @@ mason_config.setup {
 }
 
 mason_config.setup_handlers {
-  function(lsp_server_name)
-    lsp_config[lsp_server_name].setup {
-      capabilities = capabilities
-    }
-  end,
   ['sumneko_lua'] = function()
     local lua_libraries = {}
     local runtime_path = vim.split(package.path, ';')
