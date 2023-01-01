@@ -25,7 +25,7 @@ function M.is_night()
   local date_parts = vim.split(date_str, '[%s%p]+')
   local date_hour = fn.str2nr(date_parts[4])
 
-  if date_hour > 16 or date_hour < 6 then return true else return false end
+  if date_hour >= 16 or date_hour < 7 then return true else return false end
 end
 
 function M.project_root_path(root_files)
