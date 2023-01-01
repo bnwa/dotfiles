@@ -6,6 +6,7 @@ if not util.is_directory(packer_path) then
   vim.fn.system {'git', 'clone', '--depth=1', 'https://github.com/wbthomason/packer.nvim', packer_path }
   packer_init = vim.v.shell == 0
   if not packer_init then return end
+  vim.cmd.packadd 'packer.nvim'
 end
 
 local packer = require('packer')
@@ -65,6 +66,11 @@ local packer_plugins = function (use)
   use { 'ellisonleao/gruvbox.nvim' }
   use { 'ramojus/mellifluous.nvim', requires = {'rktjmp/lush.nvim'} }
   if packer_init then packer.sync() end
+end
+
+if packer_init then
+  print 'Initializing Packer - restart neovim to complete process'
+  return
 end
 
 packer.startup({
