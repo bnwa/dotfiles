@@ -10,7 +10,7 @@ end
 
 
 if util.is_neovide() then
-  cmd.colorscheme 'melange'
+  cmd.colorscheme 'mellifluous'
 end
 
 cmd 'hi! link Visual Search'
