@@ -29,7 +29,7 @@ local function restore_session(meta)
   if not session then return end
 
   if util.file_readable(session) then
-    cmd('%bdelete!')
+    cmd('%bdelete')
     cmd('source ' .. session)
   else
     notify('No Session to open for this directory - ' .. name .. ' - session file not found at path: ' .. session)
