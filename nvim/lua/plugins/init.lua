@@ -48,7 +48,7 @@ local packer_plugins = function (use)
   -- FS
   use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } }
   -- Terminal
-  use { "numToStr/FTerm.nvim" }
+  use { "akinsho/toggleterm.nvim" }
   -- Additional Behavior
   use { 'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = { 'nvim-lua/plenary.nvim' } }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
