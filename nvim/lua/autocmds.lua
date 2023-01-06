@@ -13,7 +13,7 @@ end })
 
 new({ 'VimEnter' }, { pattern = '*.md', group = user, callback = function()
   bo.textwidth = 80
-  bo.wrap = true
+  wo.wrap = true
 end })
 
 new({ 'FileType' }, { pattern = '*.fish', group = user, callback = function()
