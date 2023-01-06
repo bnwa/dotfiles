@@ -46,8 +46,6 @@ local packer_plugins = function (use)
   use { 'hrsh7th/cmp-buffer' }
   use { 'hrsh7th/cmp-cmdline' }
   use { 'hrsh7th/cmp-nvim-lsp' }
-  -- FS
-  use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } }
   -- Terminal
   use { "akinsho/toggleterm.nvim" }
   -- Additional Behavior

@@ -3,8 +3,6 @@ local cmd = vim.cmd
 local opt = vim.opt
 local g = vim.g
 
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
 opt.expandtab = true
 opt.gdefault = true
 opt.laststatus = 2
