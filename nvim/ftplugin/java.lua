@@ -1,5 +1,3 @@
-local fn = vim.fn
-local util = require 'util'
 local ok, jdtls = pcall(require, 'jdtls')
 local cmp_ok, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
 
@@ -24,6 +22,7 @@ local oracle_jre_root = '/Library/Java/JavaVirtualMachines'
 local oracle_java_8 = oracle_jre_root .. '/jdk1.8.0_331.jdk/Contents/Home'
 
 local runtimes = {}
+-- Java 11 projects require jdtls@0.57.0
 if util.is_directory(sdkman_java_11) then table.insert(runtimes, { name = 'JavaSE-11', path = sdkman_java_11 }) end
 if util.is_directory(oracle_java_8) then table.insert(runtimes, { name = 'JavaSE-1.8', path = oracle_java_8 }) end
 
