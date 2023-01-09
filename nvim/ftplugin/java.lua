@@ -1,3 +1,5 @@
+local fn = vim.fn
+local util = require 'util'
 local ok, jdtls = pcall(require, 'jdtls')
 local cmp_ok, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
 
