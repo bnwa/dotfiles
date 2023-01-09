@@ -1,3 +1,10 @@
 local fidget = require 'fidget'
 
-fidget.setup {}
+fidget.setup {
+  sources = {
+    -- jdtls not yet fully supported - constant progress updates
+    jdtls = {
+      ignore = true
+    }
+  }
+}
