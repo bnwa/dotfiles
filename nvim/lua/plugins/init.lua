@@ -63,6 +63,8 @@ local packer_plugins = function (use)
   use { 'sainnhe/gruvbox-material' }
   use { 'ellisonleao/gruvbox.nvim' }
   use { 'ramojus/mellifluous.nvim', requires = {'rktjmp/lush.nvim'} }
+  -- Syntax
+  use { 'fladson/vim-kitty' }
   if packer_init then packer.sync() end
 end
 
