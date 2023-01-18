@@ -72,7 +72,7 @@ set("n", [[<Space>e]],  function() require('telescope.builtin').diagnostics {} e
 set("n", [[<Space>o]],  function() require('telescope.builtin').lsp_document_symbols {} end, {
   desc = "Show and query all symbols in current buffer" })
 --set("n", [[<Space>m]],  get_lsp_picker('commands'))
-set("n", [[<Space>a]],  function() require('code_action_menu').open_code_action_menu() end, {
+set("n", [[<Space>a]],  function() vim.lsp.buf.code_action() end, {
   desc = "Show native code action UI at cursor position" })
 set("n", [[<Space>wo]], function() require('telescope.builtin').lsp_dynamic_workspace_symbols {} end, {
   desc = "Query all symbols in current workspace" })
