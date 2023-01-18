@@ -31,17 +31,40 @@ if util.is_directory(oracle_java_8) then table.insert(runtimes, { name = 'JavaSE
 
 if not util.is_directory(workspace_root) then fn.mkdir(workspace_root, 'p') end
 
-local config = { capabilities = capabilities }
-
-config.settings = {
-  java = {
-    configuration = {
-      runtimes = runtimes,
-    },
-  },
+local config = {}
+config.capabilities = capabilities
+config.flags = {
+  allow_incremental_sync = true
 }
 config.init_options = {
   extended_capabilities = jdtls.extendedClientCapabilities
+}
+config.init_options.extended_capabilities.resolveAdditionalTextEditsSupport = true
+config.on_attach = function(client, bufnr)
+  require('jdtls.setup').add_commands()
+end
+config.settings = {
+  java = {
+    configuration = { runtimes = runtimes, },
+    completion = {
+      favoriteStaticMembers = {
+        "org.junit.Assert.*",
+        "org.junit.Assume.*",
+        "org.junit.jupiter.api.Assertions.*",
+        "org.junit.jupiter.api.Assumptions.*",
+        "org.junit.jupiter.api.DynamicContainer.*",
+        "org.junit.jupiter.api.DynamicTest.*",
+        "org.hamcrest.MatcherAssert.assertThat",
+        "org.hamcrest.Matchers.*",
+        "org.hamcrest.CoreMatchers.*",
+        "org.junit.jupiter.api.Assertions.*",
+        "java.util.Objects.requireNonNull",
+        "java.util.Objects.requireNonNullElse",
+        "org.mockito.Mockito.*"
+      },
+    },
+    signatureHelp = { enabled = true }
+  },
 }
 config.root_dir = project_root
 config.cmd = {
@@ -51,7 +74,8 @@ config.cmd = {
   '-Declipse.product=org.eclipse.jdt.ls.core.product',
   '-Dlog.protocol=true',
   '-Dlog.level=ALL',
-  '-Xms1g',
+  '-Xms1g', -- Set initial Java process heap size
+  '-Xmx2g', -- Set max Java process heap size
   '--add-modules=ALL-SYSTEM',
   '--add-opens', 'java.base/java.util=ALL-UNNAMED',
   '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
