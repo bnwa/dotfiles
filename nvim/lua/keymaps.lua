@@ -56,7 +56,7 @@ set("n", "<C-L>", "<C-W><C-L>")
 set("n", "<C-H>", "<C-W><C-H>")
 
 -- Telescope
-set("n", [[<C-p>]],     pick_dir_files, { desc = "List and select from workspace files" })
+set("n", [[<C-p>]],     pick_git_files, { desc = "List and select from workspace files tracked by git" })
 set("n", [[<C-g>o]],    function() require('telescope.builtin').git_bcommits {} end, {
   desc = "Lists commit history for current buffer file" })
 set("n", [[<C-g>p]],    function() require('telescope.builtin').git_commits {} end, {
