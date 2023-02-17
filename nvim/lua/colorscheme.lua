@@ -11,6 +11,8 @@ end
 
 if util.is_neovide() then
   cmd.colorscheme 'mellifluous'
+else
+  cmd.colorscheme 'gruvbox'
 end
 
 cmd 'hi! link Visual Search'
