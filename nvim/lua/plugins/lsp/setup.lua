@@ -7,6 +7,13 @@ local capabilities = vim.tbl_deep_extend('force',
 
 mason_config.setup {
   automatic_installation = true,
+  ensure_installed = {
+    'emmet_ls',
+    'lemminx',
+    'jsonls',
+    'sumneko_lua',
+    'tsserver',
+  },
 }
 
 mason_config.setup_handlers {
@@ -59,6 +66,30 @@ mason_config.setup_handlers {
       server = {
         capabilities = capabilities
       }
+    }
+  end,
+  ['emmet_ls'] = function()
+    lsp_config.emmet_ls.setup {
+      capabilities = capabilities,
+      filetypes = {
+        'css',
+        'sass',
+        'scss',
+        'html',
+        'less',
+        'javascriptreact',
+        'typescriptreact',
+      },
+    }
+  end,
+  ['jsonls'] = function()
+    lsp_config.jsonls.setup {
+      capabilities = capabilities,
+    }
+  end,
+  ['lemminx'] = function()
+    lsp_config.lemminx.setup {
+      capabilities = capabilities,
     }
   end,
 }
