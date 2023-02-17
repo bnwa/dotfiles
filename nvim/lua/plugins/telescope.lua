@@ -5,7 +5,7 @@ if not telescope_ok then return end
 telescope.setup {
   defaults = {
     dynamic_preview_title = true,
-    layout_strategy = 'flex'
+    layout_strategy = 'vertical'
   }
 }
 
