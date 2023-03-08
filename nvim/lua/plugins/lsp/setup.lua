@@ -11,13 +11,13 @@ mason_config.setup {
     'emmet_ls',
     'lemminx',
     'jsonls',
-    'sumneko_lua',
+    'lua_ls',
     'tsserver',
   },
 }
 
 mason_config.setup_handlers {
-  ['sumneko_lua'] = function()
+  ['lua_ls'] = function()
     local lua_libraries = {}
     local runtime_path = vim.split(package.path, ';')
     table.insert(runtime_path, 'lua/?.lua')
@@ -31,7 +31,7 @@ mason_config.setup_handlers {
     for _, path in pairs(vim.fn.expand("~/.local/share/nvim/site/pack/packer/start/*", false, true)) do
       lua_libraries[path] = true
     end
-    lsp_config.sumneko_lua.setup {
+    lsp_config.lua_ls.setup {
       capabilities = capabilities,
       settings = {
         Lua = {
